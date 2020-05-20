@@ -8,7 +8,7 @@
 
 ### Training Sets와 Capsule Targets
 
-![training_sets_capsule_targets](./images/training_sets_capsule_targets.png)
+![training_sets_capsule_targets](./images/Training/training_sets_capsule_targets.png)
 
 
 
@@ -21,7 +21,7 @@
 
 ### Training Entry List
 
-![training_entry](./images/training_entry.png)
+![training_entry](./images/Training/training_entry.png)
 
 - goal
 - utterance and value highlighted
@@ -69,19 +69,24 @@ Patterns provide [vocabulary](https://bixbydevelopers.com/dev/docs/dev-guide/dev
 
 
 
+### Flags
+
+"금요일 저녁 식당 3명 예약해줘"의 발화에서, 예약의 과정에서 현재 예약을 받지 않은 식당을 필터링해 보여주어야 한다. 이 때, 예약에 필요한 intent를 특정 단어나 추가적인 vocab으로 제한할 수가 없는데, 이 경우 flags를 사용할 수 있다. 특정한 단어나 문장이 아닌, 현재 발화 전체에 대한 플래그를 주는 것으로 **전체에 대한 annotation**이라 보면 좋다. values와 routes를 줄 수 있다.
+
 ### Roles
 
 
 
 ### Routes
 
+For instance, take the utterance "Is it raining near me?" To train this, you could add a flag signaling that the weather condition is rain: set the node `weather.WeatherCondition` to the value `rain`. Then you would add a route of `geo.CurrentLocation` to let Bixby know to factor in the current user location.
 
+Another example of using a route is a continuation that needs to prompt for more information. For example, in the restaurant reservation example, the user might give Bixby the utterance, "change the party size"; Bixby will need to prompt for the new size:
 
-### Flags
+```
+[g:ChangeReservation:continue:Reserve,r:UpdatePartySize] Change the party size
+```
 
-
-
-
-
+The `PromptForPartySize` route lets Bixby know that it needs to prompt the user.
 
 
